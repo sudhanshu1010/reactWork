@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <!-- react through -> Dom change -->
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- bebel -> JSX-> js -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class Counter extends React.Component {
+            constructor(props) { // getting properties as arguments
+                super(props);
+                this.state = { // it's a object - state ek keyword h
+                    count: 1
+                }
+
+                // this is used to override 
+                this.increment = this.increment.bind(this)
+            }
+
+            // creating a value increment method
+            increment() { // this is a normal function, below decrement method is a arrow function
+                // it will be called when button will be cliked
+                this.setState({ // setState ek method h jo use hota h state m changes krne k liye
+                    count: this.state.count + 1 // count value ko 1 se increase kr do
+                })
+            }
+
+            decrement = () => {
+                this.setState({
+                    count: this.state.count - 1 // count decrement ho jayega
+                })
+            }
+
+            render() {
+                return (
+                    <div>
+                        <p>{this.state.count}</p>
+                        <button onClick={this.increment}>+</button>
+                        <button onClick={this.decrement}>-</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Counter />, document.getElementById("root"));
+
+    </script>
+
+</body>
+
+</html>
